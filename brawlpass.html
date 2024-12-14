@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brawl Pass</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #004aad, #0073e6);
+            color: white;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #003a91;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            z-index: 5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 50px;
+            left: 10px;
+            padding: 10px;
+            background-color: #ffd700;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #e6c200;
+        }
+
+        .brawl-pass-container {
+            margin-top: 70px;
+            width: 100vw;
+            height: calc(100vh - 70px);
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .track {
+            height: 10px;
+            background-color: #003a91;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .level {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            margin: 0 20px;
+        }
+
+        .level-number-container {
+            width: 50px;
+            height: 50px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            margin: 10px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .level a img, .level a video {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .level a img:hover, .level a video:hover {
+            transform: scale(1.1);
+        }
+
+        .brawl-pass-container::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .brawl-pass-container::-webkit-scrollbar-thumb {
+            background: #005bb5;
+            border-radius: 6px;
+        }
+
+        .brawl-pass-container::-webkit-scrollbar-track {
+            background: #003a91;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">
+        <button class="back-button">Zurück</button>
+    </a>
+
+    <div class="header">
+        BRAWL PASS
+    </div>
+
+    <div class="brawl-pass-container">
+        <div class="progress-bar">
+            <div class="track"></div>
+
+            <script>
+                const rewards = [
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    { topImg: "credits.webp", topLink: "credits2.html", bottomImg: "credits.webp", bottomLink: "credits2.html" },
+                    { topImg: "megabox.webp", topLink: "box.html", bottomImg: "Starrdrop.webp", bottomLink: "selten.html" },
+                    { topImg: "coins.webp", topLink: "coins2.html", bottomImg: "powerpunkte.webp", bottomLink: "powerpunkte2.html" },
+                    
+                    { topImg: "papiercordelius.mp4", topLink: "papiercordelius.html", bottomImg: "haudegenash.mp4", bottomLink: "haudegenash.html" }
+                ];
+
+                const container = document.querySelector('.progress-bar');
+
+                rewards.forEach((reward, index) => {
+                    const level = document.createElement('div');
+                    level.className = 'level';
+                    const levelNumber = index + 1;
+
+                    const isVideoTop = reward.topImg.endsWith('.mp4');
+                    const isVideoBottom = reward.bottomImg.endsWith('.mp4');
+
+                    level.innerHTML = `
+                        <a href="${reward.topLink}" target="_blank">
+                            ${isVideoTop ? `<video src="${reward.topImg}" autoplay loop muted></video>` : `<img src="${reward.topImg}" alt="Reward Top ${levelNumber}">`}
+                        </a>
+                        <div class="level-number-container">${levelNumber}</div>
+                        <a href="${reward.bottomLink}" target="_blank">
+                            ${isVideoBottom ? `<video src="${reward.bottomImg}" autoplay loop muted></video>` : `<img src="${reward.bottomImg}" alt="Reward Bottom ${levelNumber}">`}
+                        </a>
+                    `;
+
+                    container.appendChild(level);
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>
